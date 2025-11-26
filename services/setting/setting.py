@@ -18,6 +18,7 @@ class Setting :
     def __init__(self) :
         self.__file_name : str = 'settings.json'
         self.__times_file_name : str = 'intervals.json'
+        self.create_times_intervals()
 
     def create( self , setting : Optional[SettingType] = None ) -> Result[SettingType]:
 
@@ -61,7 +62,8 @@ class Setting :
                     'id' : i ,
                     'time' : format_date( current_time ) ,
                     'number' : cycle_number ,
-                    'state' : 'focus'
+                    'state' : 'focus' ,
+                    'is_last_focus' : True if cycle_number == cycle else False
                 }
                 timer_intervals.append( data )
             else :
@@ -97,7 +99,7 @@ class Setting :
     def get_times_intervals(self) -> list[Interval] :
         file_path: str = path('config', self.__times_file_name)
         if not os.path.exists( file_path ) :
-            raise FileNotFoundError(f'File {self.__times_file_name} does not exist.')
+            return self.create_times_intervals()['data']
 
         with open(file_path, 'r') as file :
             return json.load( file )
