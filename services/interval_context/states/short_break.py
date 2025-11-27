@@ -16,18 +16,23 @@ class ShortBreak(State):
         current_time: datetime = datetime.now().replace(microsecond=0)
         interval_time: datetime = str_to_datetime(interval['time'])
         diff: timedelta = interval_time - current_time
+        hours = diff.seconds // 3600
+        minutes = (diff.seconds % 3600) // 60
+        seconds = diff.seconds % 60
+        formatted_diff = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
 
         if interval['state'] != 'short_break':
             raise RuntimeError("Invalid state")
 
         if diff.total_seconds() <= 0.0:
-            notify( 'Focus' , f'The {number_to_text( str(interval['number'] + 1) )} focus has started...' )
+            notify( 'Focus' , f'The {number_to_text( str(interval['number'] + 1) )} focus has started' )
             context.set_current_data_to_next()
             context.state = Focus()
 
         context.state_result = {
             'result' : 'success' ,
             'state' : 'short_break',
-            'diff' : diff,
+            'diff' : formatted_diff,
+            'title': 'Short break time remaining',
             'interval' : interval,
         }

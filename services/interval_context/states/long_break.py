@@ -17,12 +17,17 @@ class LongBreak(State):
         current_time: datetime = datetime.now().replace(microsecond=0)
         interval_time: datetime = str_to_datetime(interval['time'])
         diff: timedelta = interval_time - current_time
+        diff: timedelta = interval_time - current_time
+        hours = diff.seconds // 3600
+        minutes = (diff.seconds % 3600) // 60
+        seconds = diff.seconds % 60
+        formatted_diff = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
 
         if interval['state'] != 'long_break':
             raise RuntimeError("Invalid state")
 
         if diff.total_seconds() <= 0.0 :
-            notify( 'Pomodoro Timer' , f'A new pomodoro timer has started...' )
+            notify( 'Pomodoro Timer' , f'A new pomodoro timer has started' )
             context.data = context.setting.create_times_intervals()['data']
             context.set_current_data_to_next(0)
             context.state = Focus()
@@ -30,6 +35,7 @@ class LongBreak(State):
         context.state_result = {
             'result' : 'success' ,
             'state' : 'long_break',
-            'diff' : diff,
+            'diff' : formatted_diff,
+            'title': 'Long break time remaining',
             'interval' : interval,
         }

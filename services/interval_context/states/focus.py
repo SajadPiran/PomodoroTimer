@@ -17,6 +17,10 @@ class Focus(State) :
         current_time : datetime = datetime.now().replace(microsecond=0)
         interval_time : datetime = str_to_datetime( interval['time'] )
         diff : timedelta = interval_time - current_time
+        hours = diff.seconds // 3600
+        minutes = (diff.seconds % 3600) // 60
+        seconds = diff.seconds % 60
+        formatted_diff = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
 
         if interval['state'] != 'focus' :
             raise RuntimeError("Invalid state")
@@ -35,6 +39,7 @@ class Focus(State) :
         context.state_result = {
             'result' : 'success' ,
             'state' : 'focus',
-            'diff' : diff,
+            'diff' : formatted_diff,
+            'title' : 'Focus time remaining',
             'interval' : interval,
         }

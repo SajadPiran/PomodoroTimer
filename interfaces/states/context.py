@@ -10,8 +10,8 @@ class Context(ABC) :
         self.__setting = setting
         self.__state : State = state
         self.__index : int = 0
-        self.__data : list[Interval] = self.__setting.get_times_intervals()
-        self.__current_data = self.__data[self.__index]
+        self.__data : list[Interval] | None = None
+        self.__current_data = None
 
     @property
     def state(self) :

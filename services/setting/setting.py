@@ -18,7 +18,6 @@ class Setting :
     def __init__(self) :
         self.__file_name : str = 'settings.json'
         self.__times_file_name : str = 'intervals.json'
-        self.create_times_intervals()
 
     def create( self , setting : Optional[SettingType] = None ) -> Result[SettingType]:
 

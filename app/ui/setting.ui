@@ -10,6 +10,12 @@
     <height>510</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>510</height>
+   </size>
+  </property>
   <property name="maximumSize">
    <size>
     <width>358</width>
@@ -22,7 +28,7 @@
   <property name="styleSheet">
    <string notr="true">background-color : #333333;</string>
   </property>
-  <widget class="QPushButton" name="button_2">
+  <widget class="QPushButton" name="save">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -60,18 +66,21 @@ font: 63 10pt &quot;JetBrains Mono SemiBold&quot;;color:#000000
     </property>
     <item>
      <widget class="QLabel" name="label">
+      <property name="focus" stdset="0">
+       <bool>false</bool>
+      </property>
       <property name="styleSheet">
        <string notr="true">font: 63 10pt &quot;JetBrains Mono ExtraBold&quot;;
 color : #ffffff;
 </string>
       </property>
       <property name="text">
-       <string>Pomodoro Time</string>
+       <string>Focus Time</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QTextEdit" name="pomodoroTime">
+     <widget class="QTextEdit" name="focus">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -109,12 +118,15 @@ color : #ffffff;
 </string>
       </property>
       <property name="text">
-       <string>Pomodoro Rest Time</string>
+       <string>Short Break Time</string>
+      </property>
+      <property name="short_break" stdset="0">
+       <string>Short Break Time</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QTextEdit" name="pomodoroRestTime">
+     <widget class="QTextEdit" name="short_break">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -152,12 +164,15 @@ color : #ffffff;
 </string>
       </property>
       <property name="text">
-       <string>Pomodoro Cycle</string>
+       <string>Long Break Time</string>
+      </property>
+      <property name="long_break" stdset="0">
+       <string>Long Break Time</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QTextEdit" name="pomodoroCycle">
+     <widget class="QTextEdit" name="long_break">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -195,12 +210,12 @@ color : #ffffff;
 </string>
       </property>
       <property name="text">
-       <string>Pomodoro Cycle Rest Time</string>
+       <string>Cycle</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QTextEdit" name="pomodoroCycleRest">
+     <widget class="QTextEdit" name="cycle">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
