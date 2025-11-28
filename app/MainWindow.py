@@ -38,6 +38,7 @@ class MainWindow(QtWidgets.QMainWindow) :
             if event.key() in (Qt.Key.Key_Enter, Qt.Key.Key_Return) :
                 label = ClickableLabel(self.__task_input.toPlainText().strip())
                 label.setStyleSheet( 'font: 57 8pt "JetBrains Mono Medium";' )
+                label.setWordWrap(True)
                 label.clicked.connect( self.__done_label )
                 label.doubleClicked.connect(self.__delete_label)
                 self.__tasks_layout.addWidget( label )
